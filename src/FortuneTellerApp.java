@@ -8,28 +8,52 @@ public class FortuneTellerApp {
 
 		System.out.println("What is your first name?");
 		String firstName = input.nextLine();
+		if (firstName.equals("Quit")) {
+			System.out.println("Nobody likes a quitter...");
+			System.exit(0);
+		}
 		firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase();
 
 		System.out.println("What is your last name?");
 		String lastName = input.nextLine();
+		if (lastName.equals("Quit")) {
+			System.out.println("Nobody likes a quitter...");
+			System.exit(0);
+		}
 		lastName = lastName.substring(0, 1).toUpperCase() + lastName.substring(1).toLowerCase();
 
 		System.out.println("What is your age?");
-		int age = input.nextInt();
+		String ageInput = input.nextLine();
+		if (ageInput.equals("Quit")) {
+			System.out.println("Nobody likes a quitter...");
+			System.exit(0);
+		}
+		int age = Integer.parseInt(ageInput);
 
 		System.out.println("What is your birth month? (1-12)");
-		int birthMonth = input.nextInt();
+		String birthMonthInput = input.nextLine();
+		if (birthMonthInput.equals("Quit")) {
+			System.out.println("Nobody likes a quitter...");
+			System.exit(0);
+		}
+		int birthMonth = Integer.parseInt(birthMonthInput);
 
-		input.nextLine(); // becaue line return is in console buffer
 		System.out.println("What is your favorite color? (ROYGBIV)");
 		String favoriteColor = input.nextLine();
+		if (favoriteColor.equals("Quit")) {
+			System.out.println("Nobody likes a quitter...");
+			System.exit(0);
+		}
+		favoriteColor = favoriteColor.toLowerCase();
+		
 
 		System.out.println("How many siblings do you have?");
-		int siblingNumber = input.nextInt();
-
-		System.out.println("Hello " + firstName + " " + lastName + "! Your age is " + age + ". Your birth month is "
-				+ birthMonth + ". Your favorite color is " + favoriteColor);
-		System.out.println("You have " + siblingNumber + " siblings");
+		String siblingNumberInput = input.nextLine();
+		if (firstName.equals("Quit")) {
+			System.out.println("Nobody likes a quitter...");
+			System.exit(0);
+		}
+		int siblingNumber = Integer.parseInt(siblingNumberInput);
 
 		input.close();
 
@@ -99,7 +123,8 @@ public class FortuneTellerApp {
 		}
 		System.out.println(firstName + " " + lastName + " will retire in " + retirementYears + " years with "
 				+ bankBalance + " in the bank,");
-		System.out.println("a vacatin home in " + vacationHomeLocation + ", and travel by " + modeOfTransportaion);
+		System.out
+				.println("a vacatin home in " + vacationHomeLocation + ", and travel by " + modeOfTransportaion + ".");
 	}
 
 }
