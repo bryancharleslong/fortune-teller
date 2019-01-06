@@ -3,12 +3,12 @@ import java.util.Scanner;
 public class FortuneTellerApp {
 
 	public static void main(String[] args) {
-		System.out.println("Welcome to Fortune Teller!");
+		System.out.println("Welcome to Fortune Teller! Type 'Quit' to end at any time");
 		Scanner input = new Scanner(System.in);
 
 		System.out.println("What is your first name?");
 		String firstName = input.nextLine();
-		if (firstName.equals("Quit")) {
+		if (firstName.toLowerCase().equals("quit")) {
 			System.out.println("Nobody likes a quitter...");
 			System.exit(0);
 		}
@@ -16,36 +16,54 @@ public class FortuneTellerApp {
 
 		System.out.println("What is your last name?");
 		String lastName = input.nextLine();
-		if (lastName.equals("Quit")) {
+		if (lastName.toLowerCase().equals("quit")) {
 			System.out.println("Nobody likes a quitter...");
 			System.exit(0);
 		}
 		lastName = lastName.substring(0, 1).toUpperCase() + lastName.substring(1).toLowerCase();
 
 		System.out.println("What is your age?");
-		String ageInput = input.nextLine();
-		if (ageInput.equals("Quit")) {
-			System.out.println("Nobody likes a quitter...");
-			System.exit(0);
+		String ageInput = null;
+		boolean validInput = false;
+		while(!validInput) {
+			try {
+				ageInput = input.nextLine();
+				if (ageInput.toLowerCase().equals("quit")) {
+					System.out.println("Nobody likes a quitter...");
+					System.exit(0);
+				}
+				Integer.parseInt(ageInput);
+				validInput = true;
+			}catch (NumberFormatException e) {
+				System.out.println("Please enter a numeric value");
+			}
 		}
+		
+		
 		int age = Integer.parseInt(ageInput);
 
 		System.out.println("What is your birth month? (1-12)");
 		String birthMonthInput = input.nextLine();
-		if (birthMonthInput.equals("Quit")) {
+		if (birthMonthInput.toLowerCase().equals("quit")) {
 			System.out.println("Nobody likes a quitter...");
 			System.exit(0);
 		}
 		int birthMonth = Integer.parseInt(birthMonthInput);
 
-		System.out.println("What is your favorite color? (ROYGBIV)");
-		String favoriteColor = input.nextLine();
-		if (favoriteColor.equals("Quit")) {
+		System.out.println("What is your favorite color? (ROYGBIV) Type 'Help' for list of options");
+		String favoriteColor = input.nextLine().toLowerCase();
+		if (favoriteColor.equals("quit")) {
 			System.out.println("Nobody likes a quitter...");
 			System.exit(0);
 		}
-		favoriteColor = favoriteColor.toLowerCase();
-		
+		while (favoriteColor.equals("help")) {
+			System.out.println("The ROYGBIV color options are red, orange, yellow, green, blue, indigo, violet");
+			favoriteColor = input.nextLine().toLowerCase();
+			if (favoriteColor.equals("quit")) {
+				System.out.println("Nobody likes a quitter...");
+				System.exit(0);
+			}
+		}
 
 		System.out.println("How many siblings do you have?");
 		String siblingNumberInput = input.nextLine();
@@ -108,13 +126,13 @@ public class FortuneTellerApp {
 		}
 
 		String bankBalance = null;
-		if (birthMonth < 5 & birthMonth > 0) {
+		if (birthMonth < 5 && birthMonth > 0) {
 			bankBalance = "$256,000.76";
 		} else {
-			if (birthMonth < 9 & birthMonth > 4) {
+			if (birthMonth < 9 && birthMonth > 4) {
 				bankBalance = "$3,687,105.42";
 			} else {
-				if (birthMonth < 13 & birthMonth > 8) {
+				if (birthMonth < 13 && birthMonth > 8) {
 					bankBalance = "$86.23";
 				} else {
 					bankBalance = "0.00";
@@ -123,8 +141,7 @@ public class FortuneTellerApp {
 		}
 		System.out.println(firstName + " " + lastName + " will retire in " + retirementYears + " years with "
 				+ bankBalance + " in the bank,");
-		System.out
-				.println("a vacatin home in " + vacationHomeLocation + ", and travel by " + modeOfTransportaion + ".");
+		System.out.println("a vacation home in " + vacationHomeLocation + ", and travel by " + modeOfTransportaion + ".");
 	}
 
 }
