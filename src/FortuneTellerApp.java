@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class FortuneTellerApp {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		System.out.println("Welcome to Fortune Teller! Type 'Quit' to end at any time");
 		Scanner input = new Scanner(System.in);
 
@@ -159,6 +159,8 @@ public class FortuneTellerApp {
 				}
 			}
 		}
+		System.out.println("Very interesting! Let me consult the spirits...");
+		Thread.sleep(1500);
 		System.out.println(firstName + " " + lastName + " will retire in " + retirementYears + " years with "
 				+ bankBalance + " in the bank,");
 		System.out
