@@ -1,9 +1,11 @@
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class FortuneTellerApp {
 
 	public static void main(String[] args) throws InterruptedException {
-		System.out.println("Welcome to Fortune Teller! Type 'Quit' to end at any time");
+		System.out.println("Welcome to Fortune Teller! Type \"Quit\" to end at any time");
 		Scanner input = new Scanner(System.in);
 
 		System.out.println("What is your first name?");
@@ -35,7 +37,7 @@ public class FortuneTellerApp {
 				Integer.parseInt(ageInput);
 				validInput = true;
 			} catch (NumberFormatException e) {
-				System.out.println("Please enter a numeric value");
+				System.out.println("Please enter a whole number");
 			}
 		}
 		int age = Integer.parseInt(ageInput);
@@ -53,21 +55,23 @@ public class FortuneTellerApp {
 				Integer.parseInt(birthMonthInput);
 				validInput = true;
 			} catch (NumberFormatException e) {
-				System.out.println("Please enter a numeric value");
+				System.out.println("Please enter a whole number");
 			}
 		}
 		int birthMonth = Integer.parseInt(birthMonthInput);
 
 		String favoriteColor = "";
-		while (!(favoriteColor.equals("red")||favoriteColor.equals("orange")||favoriteColor.equals("yellow")||favoriteColor.equals("green")||favoriteColor.equals("blue")||favoriteColor.equals("indigo")||favoriteColor.equals("violet"))) {
-			System.out.println("What is your favorite color? (ROYGBIV) Type 'Help' for list of options");
+		while (!(favoriteColor.equals("red") || favoriteColor.equals("orange") || favoriteColor.equals("yellow")
+				|| favoriteColor.equals("green") || favoriteColor.equals("blue") || favoriteColor.equals("indigo")
+				|| favoriteColor.equals("violet"))) {
+			System.out.println("What is your favorite color? (ROYGBIV) Type \"Help\" for list of options");
 			favoriteColor = input.nextLine().toLowerCase();
 			if (favoriteColor.equals("quit")) {
 				System.out.println("Nobody likes a quitter...");
 				System.exit(0);
 			}
 			while (favoriteColor.equals("help")) {
-				System.out.println("The ROYGBIV color options are red, orange, yellow, green, blue, indigo, violet");
+				System.out.println("The ROYGBIV color options are: red, orange, yellow, green, blue, indigo, violet");
 				favoriteColor = input.nextLine().toLowerCase();
 				if (favoriteColor.equals("quit")) {
 					System.out.println("Nobody likes a quitter...");
@@ -75,6 +79,7 @@ public class FortuneTellerApp {
 				}
 			}
 		}
+
 		System.out.println("How many siblings do you have?");
 		String siblingNumberInput = null;
 		validInput = false;
@@ -88,18 +93,22 @@ public class FortuneTellerApp {
 				Integer.parseInt(siblingNumberInput);
 				validInput = true;
 			} catch (NumberFormatException e) {
-				System.out.println("Please enter a numeric value");
+				System.out.println("Please enter a whole number");
 			}
 		}
 		int siblingNumber = Integer.parseInt(siblingNumberInput);
 
 		input.close();
 
-		int retirementYears = 0;
-		if (age % 2 == 1) {
-			retirementYears = 14;
+		int retirementYears;
+		if (age < 0) {
+			retirementYears = 200;
 		} else {
-			retirementYears = 12;
+			if (age % 2 == 1) {
+				retirementYears = 14;
+			} else {
+				retirementYears = 12;
+			}
 		}
 
 		String vacationHomeLocation = null;
@@ -119,7 +128,7 @@ public class FortuneTellerApp {
 			vacationHomeLocation = "Baton Rouge, LA";
 		}
 		if (siblingNumber < 0) {
-			vacationHomeLocation = "Chernobyl, Ukraine";
+			vacationHomeLocation = "Pripyat, Ukraine";
 		}
 
 		String modeOfTransportaion = null;
@@ -144,27 +153,28 @@ public class FortuneTellerApp {
 		if (favoriteColor.equals("violet")) {
 			modeOfTransportaion = "flying saucer";
 		}
-
-		String bankBalance = null;
+		
+		NumberFormat currency = NumberFormat.getCurrencyInstance(Locale.US);
+		double bankBalance;
 		if (birthMonth < 5 && birthMonth > 0) {
-			bankBalance = "$256,000.76";
+			bankBalance = 256000.76;
 		} else {
 			if (birthMonth < 9 && birthMonth > 4) {
-				bankBalance = "$3,687,105.42";
+				bankBalance = 3687105.42;
 			} else {
 				if (birthMonth < 13 && birthMonth > 8) {
-					bankBalance = "$86.23";
+					bankBalance = 86.23;
 				} else {
-					bankBalance = "0.00";
+					bankBalance = 0;
 				}
 			}
 		}
+		
 		System.out.println("Very interesting! Let me consult the spirits...");
 		Thread.sleep(1500);
 		System.out.println(firstName + " " + lastName + " will retire in " + retirementYears + " years with "
-				+ bankBalance + " in the bank,");
-		System.out
-				.println("a vacation home in " + vacationHomeLocation + ", and travel by " + modeOfTransportaion + ".");
+				+ currency.format(bankBalance) + " in the bank," + " will own a vacation home in " + vacationHomeLocation
+				+ ", and will travel by " + modeOfTransportaion + ".");
 	}
 
 }
