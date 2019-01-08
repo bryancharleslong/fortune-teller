@@ -103,78 +103,61 @@ public class FortuneTellerApp {
 		int retirementYears;
 		if (age < 0) {
 			retirementYears = 200;
+		} else if (age % 2 == 1) {
+			retirementYears = 14;
 		} else {
-			if (age % 2 == 1) {
-				retirementYears = 14;
-			} else {
-				retirementYears = 12;
-			}
+			retirementYears = 12;
 		}
 
 		String vacationHomeLocation = null;
 		if (siblingNumber == 0) {
 			vacationHomeLocation = "Boca Raton, FL";
-		}
-		if (siblingNumber == 1) {
+		} else if (siblingNumber == 1) {
 			vacationHomeLocation = "Nassau, Bahamas";
-		}
-		if (siblingNumber == 2) {
+		} else if (siblingNumber == 2) {
 			vacationHomeLocation = "Ponta Negra, Brazil";
-		}
-		if (siblingNumber == 3) {
+		} else if (siblingNumber == 3) {
 			vacationHomeLocation = "Portland, Oregon";
-		}
-		if (siblingNumber > 3) {
+		} else if (siblingNumber > 3) {
 			vacationHomeLocation = "Baton Rouge, LA";
-		}
-		if (siblingNumber < 0) {
+		} else if (siblingNumber < 0) {
 			vacationHomeLocation = "Pripyat, Ukraine";
 		}
 
 		String modeOfTransportaion = null;
 		if (favoriteColor.equals("red")) {
 			modeOfTransportaion = "Maserati";
-		}
-		if (favoriteColor.equals("orange")) {
+		} else if (favoriteColor.equals("orange")) {
 			modeOfTransportaion = "stallion";
-		}
-		if (favoriteColor.equals("yellow")) {
+		} else if (favoriteColor.equals("yellow")) {
 			modeOfTransportaion = "chariot";
-		}
-		if (favoriteColor.equals("green")) {
+		} else if (favoriteColor.equals("green")) {
 			modeOfTransportaion = "taxi";
-		}
-		if (favoriteColor.equals("blue")) {
+		} else if (favoriteColor.equals("blue")) {
 			modeOfTransportaion = "rickshaw";
-		}
-		if (favoriteColor.equals("indigo")) {
+		} else if (favoriteColor.equals("indigo")) {
 			modeOfTransportaion = "motor scooter";
-		}
-		if (favoriteColor.equals("violet")) {
+		} else if (favoriteColor.equals("violet")) {
 			modeOfTransportaion = "flying saucer";
 		}
-		
-		NumberFormat currency = NumberFormat.getCurrencyInstance(Locale.US);
+
 		double bankBalance;
 		if (birthMonth < 5 && birthMonth > 0) {
 			bankBalance = 256000.76;
+		} else if (birthMonth < 9 && birthMonth > 4) {
+			bankBalance = 3687105.42;
+		} else if (birthMonth < 13 && birthMonth > 8) {
+			bankBalance = 86.23;
 		} else {
-			if (birthMonth < 9 && birthMonth > 4) {
-				bankBalance = 3687105.42;
-			} else {
-				if (birthMonth < 13 && birthMonth > 8) {
-					bankBalance = 86.23;
-				} else {
-					bankBalance = 0;
-				}
-			}
+			bankBalance = 0;
 		}
-		
+
 		System.out.println("Very interesting! Let me consult the spirits...");
 		Thread.sleep(1500);
+		NumberFormat currency = NumberFormat.getCurrencyInstance(Locale.US);
 		System.out.println(firstName + " " + lastName + " will retire in " + retirementYears + " years with "
-				+ currency.format(bankBalance) + " in the bank," + " will own a vacation home in " + vacationHomeLocation
-				+ ", and will travel by " + modeOfTransportaion + ".");
+				+ currency.format(bankBalance) + " in the bank," + " \nwill own a vacation home in "
+				+ vacationHomeLocation + ", and will travel by " + modeOfTransportaion + ".");
 	}
 
 }
